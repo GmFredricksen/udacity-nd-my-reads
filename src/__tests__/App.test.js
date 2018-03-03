@@ -1,9 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import App from 'my-reads/src/components/App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('Snapshot | App', () => {
+  it('App component renders correctly', () => {
+    expect.assertions(1);
+
+    const appComponent = renderer
+      .create(<App />)
+      .toJSON();
+
+    expect(appComponent).toMatchSnapshot();
+  });
 });
