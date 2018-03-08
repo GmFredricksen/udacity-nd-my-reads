@@ -23,6 +23,10 @@ class MainPage extends Component {
       });
   }
 
+  updateBookshelf() {
+    
+  }
+
   render() {
     const { currentlyReadingBooks, wantToReadBooks, readBooks } = this.state;
 
