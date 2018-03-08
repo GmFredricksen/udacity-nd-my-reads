@@ -2,16 +2,12 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
-} from 'react-router-dom'
-// import * as BooksAPI from './BooksAPI'
+} from 'react-router-dom';
 import './App.css'
 import MainPage from '../MainPage';
 import SearchPage from '../SearchPage';
 
 class BooksApp extends React.Component {
-  state = {
-  }
-
   render() {
     return (
       <Router>
