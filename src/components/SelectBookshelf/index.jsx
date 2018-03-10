@@ -1,15 +1,20 @@
 import React from 'react';
 
 function SelectBookshelf(props) {
-  const { updateBookshelf } = props;
+  const { book, updateBookshelf } = props;
+  const selectionOptions = [ 'currentlyReading', 'wantToRead', 'read', 'none' ]
 
   return (
-    <select onChange={updateBookshelf}>
+    <select value={book.shelf} onChange={updateBookshelf}>
       <option value="none" disabled>Move to...</option>
-      <option value="currentlyReading">Currently Reading</option>
-      <option value="wantToRead">Want to Read</option>
-      <option value="read">Read</option>
-      <option value="none">None</option>
+      {
+        selectionOptions.map((option) => {
+          return <option key={option} value={option}>{
+            option.replace(/([a-z](?=[A-Z]))/g, '$1 ')
+              .replace(/^[a-z]/g, (string) => string.toUpperCase())
+          }</option>
+        })
+      }
     </select>
   )
 }
