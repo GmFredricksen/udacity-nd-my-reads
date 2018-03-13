@@ -5,8 +5,8 @@ function SelectBookshelf(props) {
   const selectionOptions = [ 'currentlyReading', 'wantToRead', 'read', 'none' ]
 
   return (
-    <select value={book.shelf} onChange={updateBookshelf}>
-      <option value="none" disabled>Move to...</option>
+    <select value={book.shelf || 'none'} onChange={updateBookshelf}>
+      <option value="" disabled>Move to...</option>
       {
         selectionOptions.map((option) => {
           return <option key={option} value={option}>{
