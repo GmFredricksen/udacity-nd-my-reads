@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BookCover from './BookCover';
 import SelectBookshelf from '../SelectBookshelf';
 
 class Book extends Component {
@@ -16,13 +17,18 @@ class Book extends Component {
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.smallThumbnail})` }}></div>
+            <BookCover
+              bookTitle={title}
+              imageLinks={imageLinks}
+            />
             <div className="book-shelf-changer">
               <SelectBookshelf book={book} updateBookshelf={this.updateBookshelf} />
             </div>
           </div>
           <div className="book-title">{title}</div>
-          <div className="book-authors">{[...authors]}</div>
+          {/* TODO: why using authors on search is breaking?
+            <div className="book-authors">{authors.length > 1 ? [...authors] : authors[0]}</div>
+          */}
         </div>
       </li>
     );
