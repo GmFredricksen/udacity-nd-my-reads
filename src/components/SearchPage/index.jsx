@@ -8,7 +8,7 @@ import './SearchPage.css';
 class SearchPage extends Component {
   state = {
     filterText: '',
-    emptySearchMessage: 'Nothing searched',
+    emptySearchMessage: 'Empty search',
     searchedBooks: [],
   }
 
@@ -30,7 +30,7 @@ class SearchPage extends Component {
         })
     } else {
       this.setState({
-        emptySearchMessage: 'Nothing searched',
+        emptySearchMessage: 'Empty search',
         searchedBooks: [],
       });
     }
