@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BookCover from './BookCover';
 import SelectBookshelf from '../SelectBookshelf';
+import './Book.css';
 
 class Book extends Component {
   updateBookshelf = (event) => {
@@ -26,9 +27,9 @@ class Book extends Component {
             </div>
           </div>
           <div className="book-title">{title}</div>
-          {/* TODO: why using authors on search is breaking?
-            <div className="book-authors">{authors.length > 1 ? [...authors] : authors[0]}</div>
-          */}
+          <div className="book-authors">
+            {authors && authors.map((author) => <span className="book-authors__author">{author}</span>)}
+          </div>
         </div>
       </li>
     );
