@@ -1,5 +1,6 @@
 import React from 'react';
 import * as CoverPlaceholder from './book-cover-placeholder.jpg';
+import './BookCover.css';
 
 function BookCover (props) {
   const { bookTitle, imageLinks } = props;
