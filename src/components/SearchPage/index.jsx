@@ -14,8 +14,9 @@ class SearchPage extends Component {
 
   handleFilterTextChange = (event) => {
     const filterText = event.target.value;
-    console.log('handleFilterTextChange =>', filterText);
+
     this.setState({ filterText });
+
     if (filterText) {
       BooksAPI.search(filterText)
         .then((searchedBooks) => {
@@ -36,25 +37,15 @@ class SearchPage extends Component {
     }
   }
 
-  updateBookshelf = (bookToBeUpdated, updatedShelf) => {
-    // const { allBooks } = this.state;
+  checkIfSearchedBookIsAlreadyInShelf(searchedBook) {
+    const { myBooks } = this.props;
+    const myBooksIds = myBooks.map(book => book.id);
 
-    BooksAPI.update(bookToBeUpdated, updatedShelf);
-      // .then(() => {
-        // TODO: how to use the returned arrays?
-        // TODO: outsource this method into a utils class
-        // const updatedBooks = allBooks.map((book) => {
-        //   if (book.id === bookToBeUpdated.id) {
-        //     book.shelf = updatedShelf;
-        //   }
-        //   return book;
-        // });
-        // this.setState({ allBooks: updatedBooks });
-      // });
+    return myBooksIds.includes(searchedBook.id) && myBooks.find(myBook => myBook.id === searchedBook.id)
   }
 
   render() {
-    console.log(this.props);
+    const { updateBookshelf } = this.props;
     const { emptySearchMessage, filterText, searchedBooks } = this.state;
 
     return (
@@ -71,7 +62,13 @@ class SearchPage extends Component {
             { 
               searchedBooks.length
               ?
-              searchedBooks.map((book) => <Book key={book.id} book={book} updateBookshelf={this.updateBookshelf} />)
+              searchedBooks.map((searchedBook) => {
+                return <Book
+                  key={searchedBook.id}
+                  book={this.checkIfSearchedBookIsAlreadyInShelf(searchedBook) || searchedBook}
+                  updateBookshelf={updateBookshelf}
+                />
+              })
               :
               <li>{emptySearchMessage}</li>
             }
