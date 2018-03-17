@@ -23,7 +23,6 @@ class BooksApp extends React.Component {
 
     BooksAPI.update(bookToBeUpdated, updatedShelf)
       .then(() => {
-        // TODO: how to use the returned arrays?
         const updatedBooks = books.map((book) => {
           if (book.id === bookToBeUpdated.id) {
             book.shelf = updatedShelf;
