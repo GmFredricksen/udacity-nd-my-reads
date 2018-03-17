@@ -2,6 +2,8 @@
 
 Final assessment project for Udacity's React Fundamentals course.
 
+⛓ [**View my Demo**](https://udacity-gm-reads.herokuapp.com/)
+
 To get started developing:
 
 * clone this repo and `cd` into it
