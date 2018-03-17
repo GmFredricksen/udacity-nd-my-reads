@@ -11,7 +11,6 @@ function SearchBar(props) {
         value={filterText}
         onChange={onFilterTextChange}
       />
-
     </div>
   )
 }
