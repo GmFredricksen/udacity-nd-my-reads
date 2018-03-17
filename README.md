@@ -1,53 +1,22 @@
-# MyReads Project
+# 🤓📚☕️ MyReads Project
 
 Final assessment project for Udacity's React Fundamentals course.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and integrated with some of the materials provided by the [starter project](https://github.com/udacity/reactnd-project-myreads-starter).
+To get started developing:
 
-To get started developing right away:
+* clone this repo and `cd` into it
+* install all project dependencies with `npm install` (or `yarn`)
+* start the development server with `npm start` (or `yarn start`)
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+If everything went smoothly you can now open and view the application at `localhost:3000` on your local machine and interact with it (if it hasn't already opened automatically).
 
-## Backend Server
+## 🔎 Search Functionality
+The search queries are limited to [`this list of words`](SEARCH_TERMS.md).
+However, remember that the [`BooksAPI.search()`](src/utils/BooksAPI.js#L33) method DOES search by title or author.
+So, don't worry if you don't find a specific author or title.
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+## ⚙️ Backend Server
+For more info about the [`BooksAPI.js`](src/utils/BooksAPI.js) provided for development please refer to the [`react nanodegree starter project`](https://github.com/udacity/reactnd-project-myreads-starter).
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
-
-### `getAll`
-
-Method Signature:
-
-```js
-getAll()
-```
-
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
-
-### `update`
-
-Method Signature:
-
-```js
-update(book, shelf)
-```
-
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
-
-### `search`
-
-Method Signature:
-
-```js
-search(query)
-```
-
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
+### 📓 Notes
+This project was bootstrapped with [`Create React App`](https://github.com/facebookincubator/create-react-app) and integrated with some of the materials provided by the [`react nanodegree starter project`](https://github.com/udacity/reactnd-project-myreads-starter).
