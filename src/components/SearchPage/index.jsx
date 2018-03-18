@@ -16,23 +16,44 @@ class SearchPage extends Component {
     const filterText = event.target.value;
 
     this.setState({ filterText });
+    this.guardAgainstTooManyAPICallsOnInput();
+  }
 
+  guardAgainstTooManyAPICallsOnInput() {
+    if (this.countDownTimerId) {
+      clearTimeout(this.countDownTimerId);
+    }
+    this.countDownTimerId = setTimeout(() => {
+      this.updateSearchResults(this.state.filterText);
+    }, 500);
+  }
+
+  updateSearchResults(filterText) {
     if (filterText) {
       BooksAPI.search(filterText)
         .then((searchedBooks) => {
-          if (!searchedBooks.hasOwnProperty('error')) {
-            this.setState({ searchedBooks });
-          } else {
+          if (searchedBooks.hasOwnProperty('error')) {
             this.setState({
               searchedBooks: [],
-              emptySearchMessage: 'Unfortunately your search did not match any book'
+              emptySearchMessage: 'Unfortunately your search did not match any book 😓',
+            });
+          } else {
+            this.setState({
+              searchedBooks,
+              emptySearchMessage: '',
             });
           }
         })
+        .catch(() => {
+          this.setState({
+            searchedBooks: [],
+            emptySearchMessage: 'There was an error while performing the search, please try again in few moments.',
+          });
+        });
     } else {
       this.setState({
-        emptySearchMessage: 'Empty search',
         searchedBooks: [],
+        emptySearchMessage: 'Empty search.',
       });
     }
   }
